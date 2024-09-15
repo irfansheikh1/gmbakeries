@@ -1,0 +1,1 @@
+The website allows customers to browse and select bakery items, add them to their cart, and provide their name, address, and phone number. Order details are saved in an Excel file for tracking. The bakery confirms the order by phone and delivers within 45 minutes to locations within a 3 km radius.
