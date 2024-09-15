@@ -378,6 +378,7 @@
 #contact input{
     background-color: rgba(161,109,14,1);
     color: black;
+
 }
 #contact input::placeholder{
     color: white;
@@ -385,10 +386,11 @@
 }
 #contact textarea{
     background-color: rgba(161,109,14,1);
-    color: black;
+    color: #ffffff;
 }
 #contact textarea::placeholder{
     color: white;
+    text-size-adjust: 30px;
 }
 #messagebtn{
     text-align: center;

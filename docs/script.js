@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to update the contact form message field
     function updateMessage() {
-        messageField.value = `I would like to inquire about: ${cartItems.join(', ')}`;
+        messageField.value = `I would like to inquire about : ${cartItems.join(' , ')}`;
     }
 
     // Function to show the "Item added" notification
