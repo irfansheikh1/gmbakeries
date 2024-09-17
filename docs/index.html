@@ -85,7 +85,7 @@
 
         <!-- home section -->
          <div class="gm-div">
-            <p><marquee behavior="" direction="left"><h4>GM Bakeries Get Bakes Delivered in 45 Minutes to Handwara Town! within 3km</h4></marquee></p>
+            <p><marquee behavior="" direction="left"><h4>GM Bakeries Get Bakes and Grocery items in 45 Minutes to Handwara Town! within 3km</h4></marquee></p>
 
          </div>
         <div class="home">  
@@ -729,35 +729,36 @@
       <!-- about -->
 
 
-      <!-- contact  -->
-      <div class="container" id="contact"    data-aos="fade-up"
-      data-aos-duration="1500">
-        <h1>BOOK YOUR ORDER</h1>
+ <!-- contact  -->
+<div class="container" id="contact" data-aos="fade-up" data-aos-duration="1500">
+    <h1>BOOK YOUR ORDER</h1>
+    <form method="post" id="form">
         <div class="row">
             <div class="col-md-4 py-1 py-md-0">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="usr" placeholder="Name">
+                    <input type="text" class="form-control" id="usr" placeholder="Name" name="name" required>
                 </div>
             </div>
             <div class="col-md-4 py-1 py-md-0">
                 <div class="form-group">
-                    <input type="address" class="form-control" id="eml" placeholder="Write your Address">
+                    <input type="text" class="form-control" id="eml" placeholder="Write your Address" name="address" required>
                 </div>
             </div>
             <div class="col-md-4 py-1 py-md-0">
                 <div class="form-group">
-                    <input type="number" class="form-control" id="phn" placeholder="Phone">
+                    <input type="number" class="form-control" id="phn" placeholder="Phone" name="phone" required>
                 </div>
             </div>
-            
         </div>
         <div class="form-group">
-            <textarea class="form-control" rows="5" id="comment" placeholder="write your items"></textarea>
+            <textarea class="form-control" rows="5" id="comment" placeholder="Write your items" name="items"></textarea>
         </div>
-        <div id="messagebtn"><button>Get now</button></div>
-      </div>
-      <!-- contact end -->
-
+        <!-- The button should be inside the form and should be of type 'submit' -->
+        <div id="messagebtn"><button type="submit">Get now</button></div>
+    </form>
+    <div id="messageDiv" style="margin-top: 20px;"></div>
+</div>
+<!-- contact end -->
 
    <!-- whatsapplink  -->
       <div class="whatsapp">

@@ -1,66 +1,65 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize AOS for animations
     AOS.init();
-});
 
-document.addEventListener('DOMContentLoaded', function() {
     // Query Selectors
-    var orderButtonInstant = document.querySelector('.btn');
-    var orderButtonSmooth = document.querySelector('#btnorder button');
-    var contactSection = document.getElementById('contact');
-    var messageField = document.getElementById('comment');
-    var addCartButtons = document.querySelectorAll('.card-body button');
+    const orderButtonInstant = document.querySelector('.btn');
+    const orderButtonSmooth = document.querySelector('#btnorder button');
+    const contactSection = document.getElementById('contact');
+    const messageField = document.getElementById('comment');
+    const addCartButtons = document.querySelectorAll('.card-body button');
+    const form = document.querySelector('#form');
+    const messageDiv = document.getElementById('messageDiv');
+
+    // Cart array to store added items
+    const cartItems = [];
 
     // Function to scroll instantly to the contact section
-    orderButtonInstant.addEventListener('click', function(event) {
-        event.preventDefault();
+    function scrollToContactInstant() {
         contactSection.scrollIntoView({ behavior: 'instant' });
-    });
+    }
 
     // Function to scroll smoothly to the contact section
-    orderButtonSmooth.addEventListener('click', function(event) {
-        event.preventDefault();
+    function scrollToContactSmooth() {
         contactSection.scrollIntoView({
             behavior: 'smooth',
             block: 'start',
             inline: 'nearest'
         });
-    });
-
-    // Cart array to store added items
-    var cartItems = [];
+    }
 
     // Function to update the contact form message field
     function updateMessage() {
-        messageField.value = `I would like to inquire about : ${cartItems.join(' , ')}`;
+        messageField.value = `I would like to inquire about: ${cartItems.join(', ')}`;
     }
 
     // Function to show the "Item added" notification
     function showAddedMessage(itemName) {
-        var messageDiv = document.createElement('div');
+        const messageDiv = document.createElement('div');
         messageDiv.classList.add('added-message');
         messageDiv.textContent = `${itemName} added to cart`;
 
         document.body.appendChild(messageDiv);
 
-        setTimeout(function() {
+        setTimeout(() => {
             document.body.removeChild(messageDiv);
         }, 3000);
     }
 
-    // Function to scroll smoothly to the contact section
-    function scrollToContact() {
-        contactSection.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-            inline: 'nearest'
-        });
-    }
+    // Add event listeners to buttons
+    orderButtonInstant.addEventListener('click', function(event) {
+        event.preventDefault();
+        scrollToContactInstant();
+    });
 
-    // Add click /event listeners to all "Add Cart" buttons
-    addCartButtons.forEach(function(button) {
+    orderButtonSmooth.addEventListener('click', function(event) {
+        event.preventDefault();
+        scrollToContactSmooth();
+    });
+
+    addCartButtons.forEach(button => {
         button.addEventListener('click', function() {
-            var itemName = this.closest('.card-body').querySelector('h3').textContent;
+            const itemName = this.closest('.card-body').querySelector('h3').textContent;
 
             if (!cartItems.includes(itemName)) {
                 cartItems.push(itemName);
@@ -68,7 +67,37 @@ document.addEventListener('DOMContentLoaded', function() {
                 showAddedMessage(itemName);
             }
 
-            scrollToContact();
+            scrollToContactSmooth();
+        });
+    });
+
+    // Handle form submission
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent form from submitting the default way
+
+        const formData = new FormData(this);
+
+        fetch('https://script.google.com/macros/s/AKfycbzYZG73f6XglAC0-hEauZV2QL9UfSxlxV8QRaObBAbwXINWgxzF58Z_fYFGiGMbKO7wkA/exec', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => response.text())
+        .then(result => {
+            // Display success message
+            messageDiv.innerText = 'YOUR ORDER IS PROCESSING';
+            messageDiv.style.color = 'green';
+
+            // Clear the form
+            form.reset();
+        })
+        .catch(error => {
+            // Display error message
+            messageDiv.innerText = 'Error occurred while submitting the form!';
+            messageDiv.style.color = 'red';
+            console.error('Error:', error);
         });
     });
 });

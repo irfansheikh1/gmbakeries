@@ -476,6 +476,7 @@ width: 60px;
  position:sticky;
  right: 10px; 
  bottom: 10px;
+
 }
 
 .added-message {
@@ -488,3 +489,17 @@ width: 60px;
     font-size: 14px;
     z-index: 1000;
 }
+#messageDiv {
+    text-align: center; /* Center text horizontally */
+    margin-top: 20px;   /* Space above the message */
+    font-size: 30px;    /* Font size for readability */
+}
+
+#messageDiv.success {
+    color: green;       /* Green text for success */
+}
+
+#messageDiv.error {
+    color: red;         /* Red text for error */
+}
+
